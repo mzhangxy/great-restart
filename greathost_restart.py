@@ -107,11 +107,11 @@ class GH:
         # 【重要修改点】：由于各大面板的重启 API 格式不同，这里假设了两种最常见的面板 API 结构。
         # 如果这个面板是基于 Pterodactyl (翼龙面板) 修改的，通常是发送电源信号：
         # url = f"/api/client/servers/{sid}/power"
-        # payload = {"signal": "restart"}
+        # payload = {"action": "start"}
         
         # 这里先尝试使用最符合 Greathost 上下文的通用 REST 格式：
-        url = f"/api/servers/{sid}/restart" # 请根据 F12 抓包结果修改此处 URL
-        payload = None # 如果抓包发现有 payload，在这里填入，例如 payload = {"action": "restart"}
+        url = f"/api/servers/{sid}/power" # 请根据 F12 抓包结果修改此处 URL
+        payload = {"action": "start"} # 如果抓包发现有 payload，在这里填入，例如 payload = {"action": "restart"}
         
         return self.api(url, method="POST", payload=payload)
 
